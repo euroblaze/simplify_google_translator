@@ -4,7 +4,6 @@ odoo.define('simplify_google_translator.Google', function (require) {
   var translationDialog = require('web.TranslationDialog');
   var core = require('web.core');
   var Dialog = require('web.Dialog');
-
   var _t = core._t;
 
   translationDialog.include({
