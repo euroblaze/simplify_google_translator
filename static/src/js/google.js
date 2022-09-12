@@ -8,24 +8,20 @@ odoo.define('simplify_google_translator.Google', function (require) {
   var _t = core._t;
 
   translationDialog.include({
-    xmlDependencies: (Dialog.prototype.xmlDependencies || [])
-      .concat(['/simplify_google_translator/static/src/xml/translate_dialog.xml']),
-    template: 'TranslationDialog',
-    events: {
+    xmlDependencies: (translationDialog.prototype.xmlDependencies || [])
+    .concat(['/simplify_translation_dialog/static/src/xml/translate_dialog.xml']),
+    events: _.extend({}, translationDialog.prototype.events, {
       'click .google_one': 'googleOne'
-    },
+    }),
 
     init: function (parent, options) {
+      if (this.third_party_buttons == undefined) {
+        this.third_party_buttons = [];
+      }
+      var google = {'module': 'simplify_google_translator', 'action': 'google_one', 'logo': 'google_logo.png'};
+      this.third_party_buttons.push(google);
       this._super.apply(this, arguments);
-      this._super(parent, _.extend({
-        size: 'large',
-        title: _.str.sprintf(_t('Translate: %s'), this.fieldName),
-        buttons: [
-          { text: _t('Save'), classes: 'btn-primary', close: true, click: this._onSave.bind(this) },
-          { text: _t('Google'), classes: 'btn-primary', close: false, click: this.googleAll.bind(this) },
-          { text: _t('Discard'), close: true },
-        ],
-      }, options));
+      this.buttons.splice(1, 0, { text: _t('Google'), classes: 'btn-primary', close: false, click: this.googleAll.bind(this) });
     },
 
     googleOne: function (event) {

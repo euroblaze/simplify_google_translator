@@ -12,12 +12,9 @@
     'author': 'Simplify-ERP™',
     'website': 'https://simplify-erp.com',
     'license': 'GPL-2',
-    'depends': ['web'],
+    'depends': ['web', 'simplify_translation_dialog'],
     'data': [
         'views/assets.xml'
-    ],
-    'qweb': [
-        'static/src/xml/translate_dialog.xml',
     ],
     'external_dependencies': {
         'python': ['googletrans']

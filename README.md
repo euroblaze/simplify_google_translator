@@ -16,6 +16,8 @@ Fully tested currently on:
 
 - 14cc
 - 14ee
+- 15cc
+- 15ee
 
 # Contributors
 
